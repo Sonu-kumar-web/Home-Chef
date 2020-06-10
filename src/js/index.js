@@ -34,7 +34,7 @@ const controlSearch = async () => {
         renderLoader(elements.searchRes);
 
         try {
-            // 4) Search for recipes
+            // 4) Search for recipes 
             await state.search.getResults();
 
             // Render result on UI
@@ -82,12 +82,14 @@ const controlRecipe = async () => {
     if (id) {
         // Prepare UI for change
 
-        // Create new recipe object
+        // Create new recipe object 
         state.recipe = new Recipe(id);
+        // state.recipe.parseIngredients();
 
         try {
-            // Get recipe data
+            // Get recipe data and parse ingredient 
             await state.recipe.getRecipe();
+            state.recipe.parseIngredients();
 
             // Calculate serving and time 
             state.recipe.calcTime();
@@ -96,6 +98,7 @@ const controlRecipe = async () => {
             // Render recipe
             console.log(state.recipe);
         } catch (err) {
+            console.log(err);
             alert('Error in processing recipe')
         }
 
