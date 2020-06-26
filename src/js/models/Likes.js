@@ -14,4 +14,12 @@ export default class Likes {
         // [2,4,8] splice(1,1) -> returns 4, original array is [2,4,8] (do not mutate original array).
         this.likes.splice(index, 1);
     }
+
+    isLiked(id) {
+        return this.likes.findIndex(el => el.id === id) !== -1;
+    }
+
+    getNumLikes() {
+        return this.isLiked.length;
+    }
 }
