@@ -121,3 +121,25 @@ const controlRecipe = async () => {
 
 // Adding same event Listener for multiple event 
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
+
+
+
+// Handling recipe button clicks
+//btn-decrease * --> * means click on button or its child
+elements.recipe.addEventListener('click', e => {
+    if(e.target.matches('.btn-decrease, .btn-decrease *')){
+        // Decrease button is clicked 
+        if(state.recipe.servings > 1){
+            state.recipe.updateServings('dec');
+            recipeView.updateServingsIngredients(state.recipe);
+        }
+
+    }else if(e.target.matches('.btn-increase, .btn-increase *')){
+        // Increased button is clicked 
+        state.recipe.updateServings('inc');
+        recipeView.updateServingsIngredients(state.recipe);
+
+    }
+    console.log(state.recipe);
+    
+});
